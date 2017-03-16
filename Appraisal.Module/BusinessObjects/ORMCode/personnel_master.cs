@@ -10,7 +10,7 @@ namespace Appraisal.Module.BusinessObjects.Appraisaldb
     [DefaultClassOptions]
     [NavigationItem("Appraisal")]
     [DevExpress.ExpressApp.DC.XafDisplayName("Personnel")]
-    [DevExpress.Persistent.Base.ImageName("Personnel")]
+    [DevExpress.Persistent.Base.ImageName("personnel")]
     [DevExpress.ExpressApp.DC.XafDefaultProperty("personnel_name")]
     public partial class personnel_master
     {

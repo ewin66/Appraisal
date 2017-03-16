@@ -1,8 +1,27 @@
-﻿<?xml version="1.0" ?>
-<Application Title="Appraisal" Logo="ExpressAppLogo">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="Appraisal" Logo="logo">
+  <BOModel>
+    <Class Name="Appraisal.Module.BusinessObjects.Appraisaldb.development" DefaultListViewShowAutoFilterRow="True" />
+    <Class Name="Appraisal.Module.BusinessObjects.Appraisaldb.objective" DefaultListViewShowAutoFilterRow="True" />
+    <Class Name="Appraisal.Module.BusinessObjects.Appraisaldb.objective_next_year" DefaultListViewShowAutoFilterRow="True" />
+    <Class Name="Appraisal.Module.BusinessObjects.Appraisaldb.options" DefaultListViewShowAutoFilterRow="True" />
+    <Class Name="Appraisal.Module.BusinessObjects.Appraisaldb.personnel_master" DefaultListViewShowAutoFilterRow="True" />
+  </BOModel>
+  <NavigationItems StartupNavigationItem="personnel_master_ListView">
+    <Items>
+      <Item Id="Appraisal">
+        <Items>
+          <Item Id="personnel_master_ListView" Index="0" />
+          <Item Id="development_ListView" Index="1" />
+          <Item Id="objective_ListView" Index="2" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
   <Options>
     <LayoutManagerOptions RequiredFieldMark="*" />
   </Options>
-  <Views>
-  </Views>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="16.2.5.0" IsNewNode="True" />
+  </SchemaModules>
 </Application>

@@ -10,7 +10,7 @@ namespace Appraisal.Module.BusinessObjects.Appraisaldb
     [DefaultClassOptions]
     [NavigationItem("Appraisal")]
     [DevExpress.ExpressApp.DC.XafDisplayName("Objective")]
-    [DevExpress.Persistent.Base.ImageName("Objective")]
+    [DevExpress.Persistent.Base.ImageName("objective")]
     [DevExpress.ExpressApp.DC.XafDefaultProperty("Objective_id")]
     public partial class objective
     {

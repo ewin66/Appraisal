@@ -18,6 +18,9 @@ namespace Appraisal.Win {
 #if EASYTEST
             DevExpress.ExpressApp.Win.EasyTest.EasyTestRemotingRegistration.Register();
 #endif
+            //test();
+            //show msg by
+            //Application.ShowViewStrategy.ShowViewInPopupWindow(Application.CreateDashboardView(Application.CreateObjectSpace(), "PaymentSuccessConfirmation", true));
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             EditModelPermission.AlwaysGranted = System.Diagnostics.Debugger.IsAttached;
@@ -29,12 +32,13 @@ namespace Appraisal.Win {
             if(ConfigurationManager.ConnectionStrings["ConnectionString"] != null) {
                 winApplication.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             }
+            DevExpress.Data.CurrencyDataController.DisableThreadingProblemsDetection = true;
 #if EASYTEST
             if(ConfigurationManager.ConnectionStrings["EasyTestConnectionString"] != null) {
                 winApplication.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTestConnectionString"].ConnectionString;
             }
 #endif
-            if(System.Diagnostics.Debugger.IsAttached && winApplication.CheckCompatibilityType == CheckCompatibilityType.DatabaseSchema) {
+            if (System.Diagnostics.Debugger.IsAttached && winApplication.CheckCompatibilityType == CheckCompatibilityType.DatabaseSchema) {
                 winApplication.DatabaseUpdateMode = DatabaseUpdateMode.UpdateDatabaseAlways;
             }
             try {
@@ -43,7 +47,15 @@ namespace Appraisal.Win {
             }
             catch(Exception e) {
                 winApplication.HandleException(e);
+                
             }
+        }
+
+        private static void test()
+        {
+            string filename = @"c:\_test\20170302 Froneri Appraisal Review 2.3.xlsx";
+            System.Data.DataTable dt = Module.Core.ExcelApi.LoadExcelFile_VBA(filename, 5, "*");
+            string aa = "";
         }
     }
 }
