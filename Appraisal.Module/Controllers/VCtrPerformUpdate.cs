@@ -87,8 +87,18 @@ namespace Appraisal.Module.Controllers
                     List<DataTable> sheets = ExcelApi.LoadExcelFile_VBA(file.FilePath, new[] { 1, 3, 4, 5, 7 });
 
                     //Personal
-                    int personnelId = Convert.ToInt32(sheets[0].Rows[12][2]);
+                    int personnelId;// = Convert.ToInt32(sheets[0].Rows[12][2]);
+                    if (!int.TryParse(sheets[0].Rows[12][2].ToString(), out personnelId))
+                    {
+                        personnelId = (DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day + DateTime.Now.Second +
+                                      DateTime.Now.Millisecond) * -1;
+                    }
                     personnel_master personnel = objectSpace.GetObjectByKey<personnel_master>(personnelId);
+                    if (personnel == null)
+                    {
+                        personnel = objectSpace.CreateObject<personnel_master>();
+                        personnel.personnel_id = personnelId;
+                    }
                     personnel.personnel_name = sheets[0].Rows[11][2].ToString();
                     personnel.job_name = sheets[0].Rows[13][2].ToString();
                     personnel.time_in_current_role = sheets[0].Rows[16][5].ToString();
@@ -167,7 +177,7 @@ namespace Appraisal.Module.Controllers
         }
         private static void GetObjectives(IReadOnlyList<DataTable> sheets, personnel_master personnel, IObjectSpace objectSpace)
         {
-            for (int objInx = 27; objInx < sheets[2].Rows.Count; objInx++)
+            for (int objInx = 0; objInx < sheets[2].Rows.Count; objInx++)
             {
                 if (sheets[2].Rows[objInx][0].ToString() == "Appraisee: Describe your overall performance over the past year")
                 {
@@ -188,9 +198,14 @@ namespace Appraisal.Module.Controllers
                 }
                 if (sheets[2].Rows[objInx][0].ToString() != "Objective")
                     continue;
-                if (sheets[2].Rows[objInx + 1][0].ToString().Trim() == string.Empty)
-                    continue;
                 objInx++;
+                while (sheets[2].Rows[objInx][0].ToString().Trim() == string.Empty)
+                {
+                    objInx++;
+                }
+                //if (sheets[2].Rows[objInx + 1][0].ToString().Trim() == string.Empty)
+                //    continue;
+                //objInx++;
                 objective obv = objectSpace.CreateObject<objective>();
                 obv.objective1 = sheets[2].Rows[objInx][0].ToString();
                 obv.personnel_id = personnel;

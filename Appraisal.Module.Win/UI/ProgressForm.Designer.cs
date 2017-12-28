@@ -51,6 +51,7 @@ namespace Appraisal.Module.Win.UI
             this.actionContainersManager = new DevExpress.ExpressApp.Win.Templates.ActionContainersManager(this.components);
             this.pbc = new DevExpress.XtraEditors.ProgressBarControl();
             this.bottomPanel = new DevExpress.ExpressApp.Win.Layout.XafLayoutControl();
+            this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlMain = new DevExpress.XtraGrid.GridControl();
             this.gridViewMain = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnFilePath = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -59,10 +60,9 @@ namespace Appraisal.Module.Win.UI
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.xafLayoutControlItem1 = new DevExpress.ExpressApp.Win.Layout.XafLayoutControlItem();
             this.xafLayoutControlItem2 = new DevExpress.ExpressApp.Win.Layout.XafLayoutControlItem();
+            this.xafLayoutControlItemClose = new DevExpress.ExpressApp.Win.Layout.XafLayoutControlItem();
             this.formStateModelSynchronizer = new DevExpress.ExpressApp.Win.Core.FormStateModelSynchronizer(this.components);
             this.viewSiteManager = new DevExpress.ExpressApp.Win.Templates.ViewSiteManager(this.components);
-            this.btnClose = new DevExpress.XtraEditors.SimpleButton();
-            this.xafLayoutControlItemClose = new DevExpress.ExpressApp.Win.Layout.XafLayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.xafBarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bottomPanel)).BeginInit();
@@ -234,6 +234,13 @@ namespace Appraisal.Module.Win.UI
             xafLayoutConstants1.ItemToTabBorderDistance = 2;
             this.bottomPanel.XafLayoutConstants = xafLayoutConstants1;
             // 
+            // btnClose
+            // 
+            resources.ApplyResources(this.btnClose, "btnClose");
+            this.btnClose.Name = "btnClose";
+            this.btnClose.StyleController = this.bottomPanel;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // gridControlMain
             // 
             resources.ApplyResources(this.gridControlMain, "gridControlMain");
@@ -283,7 +290,7 @@ namespace Appraisal.Module.Win.UI
             this.xafLayoutControlItemClose});
             this.Root.Location = new System.Drawing.Point(0, 0);
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(784, 315);
+            this.Root.Size = new System.Drawing.Size(784, 237);
             this.Root.TextVisible = false;
             // 
             // xafLayoutControlItem1
@@ -292,7 +299,7 @@ namespace Appraisal.Module.Win.UI
             this.xafLayoutControlItem1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.xafLayoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.xafLayoutControlItem1.Name = "xafLayoutControlItem1";
-            this.xafLayoutControlItem1.Size = new System.Drawing.Size(784, 283);
+            this.xafLayoutControlItem1.Size = new System.Drawing.Size(784, 205);
             this.xafLayoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.xafLayoutControlItem1.TextVisible = false;
             // 
@@ -300,11 +307,21 @@ namespace Appraisal.Module.Win.UI
             // 
             this.xafLayoutControlItem2.Control = this.pbc;
             this.xafLayoutControlItem2.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.xafLayoutControlItem2.Location = new System.Drawing.Point(0, 283);
+            this.xafLayoutControlItem2.Location = new System.Drawing.Point(0, 205);
             this.xafLayoutControlItem2.Name = "xafLayoutControlItem2";
             this.xafLayoutControlItem2.Size = new System.Drawing.Size(698, 32);
             this.xafLayoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.xafLayoutControlItem2.TextVisible = false;
+            // 
+            // xafLayoutControlItemClose
+            // 
+            this.xafLayoutControlItemClose.Control = this.btnClose;
+            this.xafLayoutControlItemClose.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.xafLayoutControlItemClose.Location = new System.Drawing.Point(698, 205);
+            this.xafLayoutControlItemClose.Name = "xafLayoutControlItemClose";
+            this.xafLayoutControlItemClose.Size = new System.Drawing.Size(86, 32);
+            this.xafLayoutControlItemClose.TextSize = new System.Drawing.Size(0, 0);
+            this.xafLayoutControlItemClose.TextVisible = false;
             // 
             // formStateModelSynchronizer
             // 
@@ -313,23 +330,6 @@ namespace Appraisal.Module.Win.UI
             // viewSiteManager
             // 
             this.viewSiteManager.ViewSiteControl = null;
-            // 
-            // btnClose
-            // 
-            resources.ApplyResources(this.btnClose, "btnClose");
-            this.btnClose.Name = "btnClose";
-            this.btnClose.StyleController = this.bottomPanel;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // xafLayoutControlItemClose
-            // 
-            this.xafLayoutControlItemClose.Control = this.btnClose;
-            this.xafLayoutControlItemClose.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.xafLayoutControlItemClose.Location = new System.Drawing.Point(698, 283);
-            this.xafLayoutControlItemClose.Name = "xafLayoutControlItemClose";
-            this.xafLayoutControlItemClose.Size = new System.Drawing.Size(86, 32);
-            this.xafLayoutControlItemClose.TextSize = new System.Drawing.Size(0, 0);
-            this.xafLayoutControlItemClose.TextVisible = false;
             // 
             // ProgressForm
             // 
@@ -346,7 +346,6 @@ namespace Appraisal.Module.Win.UI
             this.Name = "ProgressForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.xafBarManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bottomPanel)).EndInit();
